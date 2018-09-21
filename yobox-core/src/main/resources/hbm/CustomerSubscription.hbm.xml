@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class 
+   name="com.org.yobox.model.CustomerSubscription" 
+   table="customer_subscription">
+
+
+<id  name="id"   column="id"    type="java.lang.Integer"   >
+<generator class="identity"></generator>
+</id>
+ 
+        
+        
+        <many-to-one
+            name="customer"
+            class="com.org.yobox.model.Customer"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="customer_id" 
+            />
+        </many-to-one>
+        
+         <many-to-one
+            name="customerAddress"
+            class="com.org.yobox.model.CustomerAddress"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="customer_address_id" 
+            />
+        </many-to-one>
+        
+         <many-to-one
+            name="subscriptionCycle"
+            class="com.org.yobox.model.SubscriptionCycles"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="subscription_cycles_id" 
+            />
+        </many-to-one>
+        
+        
+    
+    <property
+            name="paymentStatus"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="payment_status"
+            length="15"
+    />
+    
+    
+      <property
+            name="pgResponse"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="pg_response"
+            
+    />
+    
+    <property
+            name="subscriptionStatus"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="subscription_status"
+            length="11"
+    />
+    
+    
+    <property
+            name="totalAmount"
+            type="java.math.BigDecimal"
+            update="true"
+            insert="true"
+            column="total_amount"
+            precision="15"
+            scale="2" 
+    />
+    
+  
+   <property
+            name="startDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="start_date"
+            
+/>
+
+ <property
+            name="endDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="end_date"
+            
+/>
+
+
+   <property
+            name="dateAdded"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="date_added"
+            
+/>
+
+ 
+<property
+            name="dateModified"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="date_modified"
+            
+/> 
+  
+    
+    
+    <set
+            name="ordersProcessed"
+            lazy="false"
+            inverse="true"
+            cascade="none"
+            sort="unsorted"
+        >
+<key  column="customer_subscription_id"></key>
+<one-to-many class="com.org.yobox.model.OrdersProcessed"/>
+</set>
+
+    
+    
+</class>
+
+<query name="cs.getCustomerOrdersList"><![CDATA[
+select op from CustomerSubscription as cs inner join  cs.ordersProcessed as op where cs.customer.id=:customerId
+]]></query>
+
+</hibernate-mapping>

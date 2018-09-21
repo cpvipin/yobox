@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class 
+   name="com.org.yobox.model.OrdersProcessed" 
+   table="orders_processed">
+
+
+<id  name="id"   column="id"    type="java.lang.Integer"   >
+<generator class="identity"></generator>
+</id>
+
+     
+        
+        
+        <many-to-one
+            name="customer"
+            class="com.org.yobox.model.Customer"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="customer_id" 
+            />
+        </many-to-one>
+        
+         <many-to-one
+            name="customerAddress"
+            class="com.org.yobox.model.CustomerAddress"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="customer_address_id" 
+            />
+        </many-to-one>
+        
+        <many-to-one
+            name="customerSubscription"
+            class="com.org.yobox.model.CustomerSubscription"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="customer_subscription_id" 
+            />
+        </many-to-one>
+        
+        
+    
+
+<property
+            name="subscriptionName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="subscription_name"
+    />
+    
+    <property
+            name="orderStatus"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="order_status"
+    />
+    
+    
+   <property
+            name="dateAdded"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="date_added"
+            
+/>
+
+ 
+<property
+            name="dateModified"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="date_modified"
+            
+/> 
+  
+    
+    
+</class>
+
+
+</hibernate-mapping>

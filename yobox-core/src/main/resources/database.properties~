@@ -1,0 +1,7 @@
+db.driverClassName=com.mysql.jdbc.Driver
+#db.url=jdbc:mysql://localhost:3306/yobox_db1
+#db.username=root
+#db.password=Root123
+db.url=jdbc:mysql://fashtag-proddb-inst.clhps1i5guia.ap-southeast-1.rds.amazonaws.com:3306/yobox_db
+db.username=fashtaguserRoot
+db.password=KL51c7391!
